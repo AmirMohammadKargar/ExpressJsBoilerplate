@@ -1,4 +1,4 @@
-import { mapUserToEntity } from "../../../common/mappers/userMapper";
+import { userDtoMapper } from "../../../common/mappers/userMapper";
 import { ApiResponse } from "../../../common/models/ApiResponse";
 import { UserRepository } from "../infrastructure/UserRepository";
 import { ICreateUserDTO } from "./dtos/ICreateUserDto";
@@ -13,7 +13,7 @@ export class UserService {
   ): Promise<ApiResponse<IUserResponseDTO> | ApiResponse<undefined>> {
     const user = await this.userRepo.findById(id);
     return user
-      ? new ApiResponse(true, mapUserToEntity(user), "", 200)
+      ? new ApiResponse(true, userDtoMapper(user), "", 200)
       : new ApiResponse(false, undefined, "User not found", 404);
   }
 
@@ -26,7 +26,7 @@ export class UserService {
       const user = await this.userRepo.create(createUserDto);
       return new ApiResponse(
         true,
-        mapUserToEntity(user),
+        userDtoMapper(user),
         "user created successfully",
         201
       );
@@ -42,7 +42,7 @@ export class UserService {
 
     const user = await this.userRepo.update(id, updateUserDto);
     return user
-      ? new ApiResponse(true, mapUserToEntity(user), "", 200)
+      ? new ApiResponse(true, userDtoMapper(user), "", 200)
       : new ApiResponse(false, undefined, "User not found", 404);
   }
 }
