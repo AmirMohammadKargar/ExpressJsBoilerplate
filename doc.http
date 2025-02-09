@@ -1,0 +1,18 @@
+POST http://localhost:5500/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "email": "test@w123d.com"
+}
+###
+PUT http://localhost:5500/users/cm6w7ajxr0000oin673gs82fe HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Amir",
+    "email": "testasd2@test.com"
+}
+###
+GET http://localhost:5500/users/cm6w7ajxr0000oin673gs82fe HTTP/1.1
+content-type: application/json
